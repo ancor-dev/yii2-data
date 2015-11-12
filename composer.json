@@ -1,0 +1,21 @@
+{
+    "name": "ancor/yii2-data",
+    "description": "Advanced classes for work with data",
+    "type": "yii2-extension",
+    "require": {
+        "yiisoft/yii2": "^2.0"
+    },
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Anton Korniychuk",
+            "email": "ancor.dev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload" : {
+    	"psr-4" : {
+    		"ancor\\data\\" : "src"
+  		}
+  	}
+}
