@@ -1,5 +1,5 @@
 <?php
-namespace ancor\rest;
+namespace ancor\data;
 
 use Yii;
 use yii\base\InvalidConfigException;
