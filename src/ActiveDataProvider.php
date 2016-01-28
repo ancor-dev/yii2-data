@@ -11,10 +11,10 @@ use yii\data\ActiveDataProvider as _ActiveDataProvider;
 /**
  * @inheritdoc
  * added a 'get parameter' for pagination
- * page-from - value of primary key. (WHERE id <= `page-from`)
+ * page-from-pk - value of primary key. (WHERE id <= `page-from-pk`)
  *
  * ```
- * ?page-from=25
+ * ?page-from-pk=25
  * ```
  */
 class ActiveDataProvider extends _ActiveDataProvider
@@ -22,7 +22,7 @@ class ActiveDataProvider extends _ActiveDataProvider
     /**
      * @var mixed value of primary key
      */
-    public $pageFrom;
+    public $pageFromPk;
 
     /**
      * @inheritdoc
@@ -30,7 +30,7 @@ class ActiveDataProvider extends _ActiveDataProvider
     public function init()
     {
         parent::init();
-        $this->pageFrom = Yii::$app->request->get('page-from');
+        $this->pageFromPk = Yii::$app->request->get('page-from-pk');
     } // end init()
     
     /**
@@ -67,19 +67,19 @@ class ActiveDataProvider extends _ActiveDataProvider
     }
 
     /**
-     * Set the page-from option
+     * Set the page-from-pk option
      * @param QueryInterface $query
      */
     protected function setPageFrom( QueryInterface $query )
     {
-        if ( $this->pageFrom )
+        if ( $this->pageFromPk )
         {
             $class = $this->query->modelClass;
             $pks = $class::primaryKey();
             if ( count($pks) > 1) {
-                throw new NotSupportedException('The "page-from" filter can not be apply for composite primary key.');
+                throw new NotSupportedException('The "page-from-pk" filter can not be apply for composite primary key.');
             }
-            $query->andWhere(['<=', $pks[0], $this->pageFrom]);
+            $query->andWhere(['<=', $pks[0], $this->pageFromPk]);
         }
         return $query;
     } // end setPageFrom()
