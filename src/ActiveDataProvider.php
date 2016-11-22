@@ -13,9 +13,10 @@ use yii\data\ActiveDataProvider as _ActiveDataProvider;
  * added a 'get parameter' for pagination
  * page-from-pk - value of primary key. (WHERE id <= `page-from-pk`)
  *
- * ```
- * ?page-from-pk=25
- * ```
+ * Example:
+ *
+ *     ?page-from-pk=25
+ * 
  */
 class ActiveDataProvider extends _ActiveDataProvider
 {
@@ -79,7 +80,7 @@ class ActiveDataProvider extends _ActiveDataProvider
             if ( count($pks) > 1) {
                 throw new NotSupportedException('The "page-from-pk" filter can not be apply for composite primary key.');
             }
-            $query->andWhere(['<=', $pks[0], $this->pageFromPk]);
+            $query->andWhere(['<', $pks[0], $this->pageFromPk]);
         }
         return $query;
     } // end setPageFrom()
